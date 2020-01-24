@@ -1,4 +1,5 @@
 class NaturalHazards::Event
+  attr_accessor :title
   
    @@all = []
   
