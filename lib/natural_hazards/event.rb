@@ -1,5 +1,5 @@
 class NaturalHazards::Event
-  attr_accessor :title
+   attr_accessor :title, :coordinates, :description
   
    @@all = []
   
@@ -25,6 +25,12 @@ class NaturalHazards::Event
     end
     
     def self.all
+      unless @@all != []
+      get_events
+      end
+    end
+    
+    def save
       @@all << self
     end
   

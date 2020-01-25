@@ -1,4 +1,4 @@
-
+require 'pry'
 require 'httparty'
 
 require_relative "natural_hazards/version"
