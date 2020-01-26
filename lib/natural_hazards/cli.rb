@@ -11,8 +11,9 @@ class NaturalHazards::CLI
   
   
     def list_events
-      NaturalHazards::Event.all.each.with_index {|e, index| puts "#{index}. #{e.title}"}
-      
+      NaturalHazards::Event.all.each.with_index do |e, index|
+        puts "#{index}" ". " "#{e.title}"
+      end
     end
         
   

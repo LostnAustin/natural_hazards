@@ -1,3 +1,9 @@
+
+gem install json
+gem install pry
+gem install httparty
+gem install open-uri
+
 require 'rubygems'
 require 'pry'
 require 'httparty'

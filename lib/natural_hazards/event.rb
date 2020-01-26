@@ -4,6 +4,7 @@ class NaturalHazards::Event
    @@all = []
   
     def initialize(info)
+      info_from_hash(info)
       save
     end
   
