@@ -1,10 +1,7 @@
 class NaturalHazards::API
   
     def self.get_events
-     response = HTTParty.get("https://eonet.sci.gsfc.nasa.gov/api/v2.1/events", { 
-        status: "open",
-        limit: 20
-      })
+     response = HTTParty.get("https://eonet.sci.gsfc.nasa.gov/api/v2.1/events")
          events = response["events"]
         NaturalHazards::Event.new(events)
      end
