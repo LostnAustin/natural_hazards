@@ -1,12 +1,11 @@
 class NaturalHazards::Event
-   attr_accessor :title, :coordinates, :description, :event_id, :info
+   attr_accessor :title, :coordinates, :description, :event_id, :info, :id, :link, :categories, :sources, :geometries, :date, :type, :url, :events
   
    @@all = []
   
     def initialize(info)
       set_event_id
-     
-      info_from_hash(info)
+      event_from_hash(events)
       save
     end
 
@@ -15,22 +14,26 @@ class NaturalHazards::Event
     end
   
     
-    def self.new_from_collection(events)
-      events.each do |info|
-       new(info)
+    def self.new_from_collection(events) 
+      events.each do |event|
+        binding.pry
+       new(event)
       end
     end
 
    
-    def info_from_hash(info)  
-      info.each do |k, v|
-        # binding.pry
-      send("#{k}=", v)
+    def event_from_hash(events)  
+       binding.pry
+      events.each_with_object([]) do |(k,v), keys|
+      keys << k
+         
+        keys.concat(event_from_hash(v)) if v.is_a? Hash
       end
     end
     
     def self.get_events
       NaturalHazards::API.get_events
+      binding.pry
       all
     end
     
