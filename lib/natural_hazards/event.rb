@@ -15,9 +15,9 @@ class NaturalHazards::Event
     end
   
     
-    def self.new_from_collection(events) 
-      events.each do |event|
-       new(event)
+    def self.new_from_collection(event) 
+      event.each do |event_info|
+       new(event_info)
       end
     end
 
