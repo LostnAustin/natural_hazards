@@ -5,7 +5,7 @@ class NaturalHazards::Event
   
     def initialize(info)
       set_event_id
-     attributes_from_hash(attrs)
+      attributes_from_hash(info)
       
       save
     end
@@ -16,21 +16,22 @@ class NaturalHazards::Event
   
     
     def self.new_from_collection(events) 
-      events.each do |attrs|
-       new(attrs)
+      until events.count == 20
+        events.each do |attrs|
+        new(attrs)
+        end
       end
-    end
-
+    
    
-    def attributes_from_hash(attrs)  
-        # binding.pry
-      attrs.each do |k, v|
-        send("#{k}=", v)
-      # .each_with_object([]) do |(k,v), keys|
-      # keys << k
-         
-      #   keys.concat(event_from_hash(v)) if v.is_a? Hash
-       end
+    def attributes_from_hash(info)  
+       
+    #  info.each do |k, v|
+    #     send("#{k}=", v)
+      info.each_with_object([]) do |(k,v), keys|
+      keys << k 
+        keys.concat(event_from_hash(v)) if v.is_a? Hash
+        end
+      end
     end
     
     def self.get_events

@@ -8,7 +8,8 @@ class NaturalHazards::API
          # events.each.with_index do |event|
          #    # puts "#{event}"
        NaturalHazards::Event.new_from_collection(events)
-         # # JSON.parse(response.body)
+        
+       # # JSON.parse(response.body)
          # response["events"].each do |event|
          #     until count ==20
          # # puts "#{index}"". " 
