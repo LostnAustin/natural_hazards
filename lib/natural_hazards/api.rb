@@ -5,8 +5,8 @@ class NaturalHazards::API
        response = HTTParty.get("https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?limit=10")
 
        events = JSON.parse(response.body)
-         events.each.with_index do |event|
-            puts "#{event}"
+         # events.each.with_index do |event|
+         #    # puts "#{event}"
        NaturalHazards::Event.new_from_collection(events)
          # # JSON.parse(response.body)
          # response["events"].each do |event|
@@ -16,7 +16,7 @@ class NaturalHazards::API
          # count +=1
          # binding.pry
          #     end 
-         end
+         # end
    end
 end
   # puts response.body

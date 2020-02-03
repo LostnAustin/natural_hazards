@@ -1,11 +1,11 @@
 class NaturalHazards::Event
-   attr_accessor :title, :coordinates, :description, :event_id, :info, :id, :link, :categories, :sources, :geometries, :date, :type, :url, :events
+   attr_accessor :title, :coordinates, :description, :event_id, :info, :id, :link, :categories, :sources, :geometries, :date, :type, :url, :attrs
   
    @@all = []
   
     def initialize(info)
       set_event_id
-     event_from_hash(events)
+     attributes_from_hash(attrs)
       
       save
     end
@@ -15,14 +15,14 @@ class NaturalHazards::Event
     end
   
     
-    def self.new_from_collection(event) 
-      event.each do |event_info|
-       new(event_info)
+    def self.new_from_collection(events) 
+      events.each do |attrs|
+       new(attrs)
       end
     end
 
    
-    def event_from_hash(attrs)  
+    def attributes_from_hash(attrs)  
         # binding.pry
       attrs.each do |k, v|
         send("#{k}=", v)
