@@ -5,7 +5,8 @@ class NaturalHazards::Event
   
     def initialize(info)
       set_event_id
-      event_from_hash(events)
+     event_from_hash(events)
+      
       save
     end
 
@@ -16,24 +17,24 @@ class NaturalHazards::Event
     
     def self.new_from_collection(events) 
       events.each do |event|
-        binding.pry
        new(event)
       end
     end
 
    
-    def event_from_hash(events)  
-       binding.pry
-      events.each_with_object([]) do |(k,v), keys|
-      keys << k
+    def event_from_hash(attrs)  
+        # binding.pry
+      attrs.each do |k, v|
+        send("#{k}=", v)
+      # .each_with_object([]) do |(k,v), keys|
+      # keys << k
          
-        keys.concat(event_from_hash(v)) if v.is_a? Hash
-      end
+      #   keys.concat(event_from_hash(v)) if v.is_a? Hash
+       end
     end
     
     def self.get_events
       NaturalHazards::API.get_events
-      binding.pry
       all
     end
     
@@ -47,7 +48,7 @@ class NaturalHazards::Event
       @@all << self
     end
 
-    def self.find_by_id(response)
+    def self.find_by_id(user_response)
       all.find{|e| e.event_id == response.to_i}
     end
 
