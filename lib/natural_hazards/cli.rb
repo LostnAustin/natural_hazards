@@ -14,7 +14,7 @@ class NaturalHazards::CLI
     
   
     def list_events
-      NaturalHazards::Event.all.each {|e| puts "#{e.title}"}
+      NaturalHazards::Event.new(event).all.each {|e| puts "#{e.title}"}
   
     end
         

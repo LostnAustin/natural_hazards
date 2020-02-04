@@ -1,11 +1,11 @@
 class NaturalHazards::Event
-   attr_accessor :title, :coordinates, :description, :event_id, :info, :id, :link, :categories, :sources, :geometries, :date, :type, :url, :attrs
+   attr_accessor :title, :coordinates, :description, :event_id, :events, :id, :link, :categories, :sources, :geometries, :date, :type, :url, :attrs
   
    @@all = []
   
-    def initialize(info)
+    def initialize(events)
       set_event_id
-      attributes_from_hash(info)
+      # attributes_from_hash(events)
       
       save
     end
@@ -15,24 +15,24 @@ class NaturalHazards::Event
     end
   
     
-    def self.new_from_collection(events) 
-      until events.count == 20
-        events.each do |attrs|
-        new(attrs)
-        end
-      end
+    # def self.new_from_collection(events) 
+    #   until events.count == 20
+    #     events["events"].each do |attrs|
+    #     new(attrs)
+    #     end
+    #   end
     
    
-    def attributes_from_hash(info)  
+    # def attributes_from_hash(events)  
        
-    #  info.each do |k, v|
-    #     send("#{k}=", v)
-      info.each_with_object([]) do |(k,v), keys|
-      keys << k 
-        keys.concat(event_from_hash(v)) if v.is_a? Hash
-        end
-      end
-    end
+    # #  events.each do |k, v|
+    # #     send("#{k}=", v)
+    #   events.each_with_object([]) do |(k,v), keys|
+    #   keys << k 
+    #     keys.concat(event_from_hash(v)) if v.is_a? Hash
+    #     end
+    #   end
+    # end
     
     def self.get_events
       NaturalHazards::API.get_events
