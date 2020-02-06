@@ -51,7 +51,8 @@ class NaturalHazards::CLI
         elsif answer == "exit"
           goodbye
         elsif answer != ('list' || 'exit')
-          puts "I'm sorry I don't understand, please choose from the options"
+          puts "I'm sorry I don't understand, please choose from the options
+          dd"
           options
         
         end 
