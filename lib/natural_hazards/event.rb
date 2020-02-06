@@ -3,9 +3,9 @@ class NaturalHazards::Event
   
    @@all = []
   
-    def initialize(events)
+    def initialize(event)
       set_event_id
-      # attributes_from_hash(events)
+      attributes_from_hash(event)
       
       save
     end
@@ -15,24 +15,22 @@ class NaturalHazards::Event
     end
   
     
-    # def self.new_from_collection(events) 
-    #   until events.count == 20
-    #     events["events"].each do |attrs|
-    #     new(attrs)
-    #     end
-    #   end
-    
+    def self.new_from_collection(events) 
+        events.each do |attrs|
+        new(attrs)
+        end
+      end 
    
-    # def attributes_from_hash(events)  
-       
-    # #  events.each do |k, v|
-    # #     send("#{k}=", v)
-    #   events.each_with_object([]) do |(k,v), keys|
-    #   keys << k 
-    #     keys.concat(event_from_hash(v)) if v.is_a? Hash
-    #     end
-    #   end
-    # end
+    def attributes_from_hash(event)  
+    #  create and send key/value pairs + nested k/v pairs 
+     event.each do |k, v|
+        send("#{k}=", v)
+     end
+      event.each_with_object([]) do |(k,v), keys|
+      keys << k 
+        keys.concat(event_from_hash(v)) if v.is_a? Hash
+      end
+    end
     
     def self.get_events
       NaturalHazards::API.get_events
@@ -41,16 +39,17 @@ class NaturalHazards::Event
     
     def self.all
       unless @@all != []
-      get_events
+        get_events
       end
+        @@all
     end
     
     def save
       @@all << self
     end
 
-    def self.find_by_id(user_response)
-      all.find{|e| e.event_id == response.to_i}
+    def self.find_by_id(input)
+      all.find{|e| e.event_id == input.to_i}
     end
 
    

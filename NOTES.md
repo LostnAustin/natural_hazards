@@ -1,23 +1,9 @@
+-Build API Class that gets all events
 
-gem install json
-gem install pry
-gem install httparty
-gem install open-uri
+-Build an Event class that defines parameters for each instance of event.
+initialized with an eventID, and the attributes for each event
 
-require 'rubygems'
-require 'pry'
-require 'httparty'
+build methods to encapsulate logic for Event class.
 
-response = HTTParty.get("https://eonet.sci.gsfc.nasa.gov/api/v2.1/events")
-
-puts response.body
- events = response["events"]
-
-
-#   events.each do |e| puts "#{e.category}"
-# binding.pry
-# end
-
-#puts response.code
-#puts response.headers.inspect
-#puts response.EONET_Events
+- build cli class to communicate with user, create chronological procedures that loop depending on user input
+build method to return user's selected choice based on the eventID created for in the Event class for each instance.

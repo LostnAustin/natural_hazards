@@ -14,13 +14,12 @@ class NaturalHazards::CLI
     
   
     def list_events
-      NaturalHazards::Event.new(event).all.each {|e| puts "#{e.title}"}
-  
+      NaturalHazards::Event.all.each.with_index {|e, index| puts "#{index +1}" ". " "#{e.title}"}
     end
         
   
     def get_user_input
-      @input = gets.strip
+      @input = gets.chomp
     end
 
 
@@ -30,21 +29,37 @@ class NaturalHazards::CLI
     end
 
     def invalid_input
-      puts "Sorry I don't understand, please enter a number from the list"
+      puts "Sorry I don't understand, please enter one of the options listed above!"
       get_user_input
     end
 
+
     def show_event(event)
-      puts "#{index}"". " "#{event["title"]}"
+      # binding.pry
+      puts   "#{event.title}" "#{event.description}" 
+      puts ""
+      puts "#{event.geometries}"
+      
     end
 
     def options
-      puts "Type list to see the events again or exit to end the program!"
-      get_user_input
+      puts ""
+      puts "Type 'list' to see the events again, or 'exit' to end the program!"
+       answer = gets.chomp
+        if answer == "list"
+          list_events
+        elsif answer == "exit"
+          goodbye
+        elsif answer != ('list' || 'exit')
+          puts "I'm sorry I don't understand, please choose from the options"
+          options
+        
+        end 
     end
 
     def goodbye
       puts "Have a great day!"
+      exit
     end
     
 end
