@@ -1,8 +1,6 @@
 # NaturalHazards
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/natural_hazards`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to the Global Natural Hazards Gem! This project uses NASA's API to access current Natural Hazards across the globe. User interaction occurs through CLI, choosing an event from a list to view more information about.
 
 ## Installation
 
